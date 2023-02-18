@@ -4,40 +4,33 @@
     {
         static void Main(string[] args)
         {
-            string playerInput;
-            string botInput = null;
-            int randomNumber = new Random().Next(1, 3);
+            Console.WriteLine("Rock-Paper-Scissors - Best of five");
 
-            Console.WriteLine("Select your input (Rock, Paper, Scissors): ");
-            playerInput= Console.ReadLine();
+            Game game = new Game();
+            
+            for (int i = 0 ; i < 5; i++) 
+            {
+                game.game();
+                Console.WriteLine("-----------------------------");
+            }
 
-            switch(randomNumber)
+            if(game.playerWinCount > game.botWinCount)
             {
-                case 1:
-                    botInput = "Rock";
-                    break;
-                case 2:
-                    botInput = "Paper";
-                    break;
-                case 3:
-                    botInput = "Scissors";
-                    break;
+                Console.WriteLine("You won!");
+                Console.WriteLine("Player: " + game.playerWinCount);
+                Console.WriteLine("Bot: " + game.botWinCount);
             }
-    
-            if(playerInput == botInput)
+            else if (game.playerWinCount == game.botWinCount) 
             {
-                Console.WriteLine("Bot: " + botInput);
-                Console.WriteLine("Draw");
+                Console.WriteLine("It's a draw.");
+                Console.WriteLine("Player: " + game.playerWinCount);
+                Console.WriteLine("Bot: " + game.botWinCount);
             }
-            else if((playerInput == "Rock" && botInput == "Scissors") || (playerInput == "Scissors" && botInput == "Paper") || (playerInput == "Paper" && botInput == "Rock"))
+            else 
             {
-                Console.WriteLine("Bot: " + botInput);
-                Console.WriteLine("You won");
-            }
-            else
-            {
-                Console.WriteLine("Bot: " + botInput);
                 Console.WriteLine("You lost");
+                Console.WriteLine("Player: " + game.playerWinCount);
+                Console.WriteLine("Bot: " + game.botWinCount);
             }
         }
     }
